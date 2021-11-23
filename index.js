@@ -50,9 +50,19 @@ app.get('/avo/list', async function (req, res) {
   res.render('list', { listOfShops });
 });
 
-app.post('/avo/add', async function (req, res) {
+app.get('/avo/add', function (req, res) {
   //console.log(req.body);
-  res.redirect('/');
+  res.render('add', {});
+});
+
+app.post('/avo/add', async function (req, res) {
+  console.log(req.body);
+  let deals = await avoShopper.createDeal(
+    req.body.shop,
+    req.body.qty,
+    req.body.price
+  );
+  res.render('/', { deals });
 });
 
 app.get('/avo/deals', async function (req, res) {
