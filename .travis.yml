@@ -1,7 +1,7 @@
 language: node_js
 
 env:
-  - DATABASE_URL=postgresql://postgresql://localhost:5432/avo_shopper
+  - DATABASE_URL=postgresql://localhost:5432/avo_shopper
 
 node_js:  
   - "16.6.1"
