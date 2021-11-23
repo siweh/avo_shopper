@@ -61,7 +61,7 @@ app.post('/avo/add', async function (req, res) {
     req.body.qty,
     req.body.price
   );
-  res.render('/', { deals });
+  res.render('index', { deals });
 });
 
 app.get('/avo/deals', async function (req, res) {
