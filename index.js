@@ -1,5 +1,6 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
+
 const pg = require('pg');
 const Pool = pg.Pool;
 let AvoShopper = require('./avo-shopper');
@@ -15,6 +16,9 @@ const connectionString =
 
 const pool = new Pool({
   connectionString,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
 
 const avoShopper = AvoShopper(pool);
