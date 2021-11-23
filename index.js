@@ -1,8 +1,20 @@
 const express = require('express');
-const exphbs  = require('express-handlebars');
+const exphbs = require('express-handlebars');
+const pg = require('pg');
+const Pool = pg.Pool;
+let AvoShopper = require('./avo-shopper');
+
+const connectionString =
+  process.env.DATABASE_URL || 'postgresql://localhost:5432/avo_shopper';
+
+const pool = new Pool({
+  connectionString,
+});
+
+const avoShopper = AvoShopper(pool);
 
 const app = express();
-const PORT =  process.env.PORT || 3019;
+const PORT = process.env.PORT || 3019;
 
 // enable the req.body object - to allow us to use HTML forms
 app.use(express.json());
@@ -16,15 +28,31 @@ app.use(express.static('public'));
 app.engine('handlebars', exphbs.engine());
 app.set('view engine', 'handlebars');
 
-let counter = 0;
+app.get('/', async function (req, res) {
+  //let shop = await avoShopper.dealsForShop(req.body.shopId);
 
-app.get('/', function(req, res) {
-	res.render('index', {
-		counter
-	});
+  res.render('index', {});
+});
+
+app.get('/avo/list', async function (req, res) {
+  let listOfShops = await avoShopper.listShops();
+  //console.log(listOfShops);
+  res.render('list', { listOfShops });
+});
+
+app.post('/avo/add', async function (req, res) {
+  //console.log(req.body);
+  res.redirect('/');
+});
+
+app.get('/avo/deals', async function (req, res) {
+  //console.log(req.body);
+  let deals = await avoShopper.recommendDeals(45);
+  //console.log(deals);
+  res.render('deals', { deals });
 });
 
 // start  the server and start listening for HTTP request on the PORT number specified...
-app.listen(PORT, function() {
-	console.log(`AvoApp started on port ${PORT}`)
+app.listen(PORT, function () {
+  console.log(`AvoApp started on port ${PORT}`);
 });

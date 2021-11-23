@@ -1,0 +1,29 @@
+<h2>Add Avo</h2>
+
+<form action='/avo/add' method='post'>
+
+  <div class='m1'>
+    <label for='qty'>Number of Avos</label>
+    <input type='number' class='m-1 p-1' type='text' name='qty' id='' />
+  </div>
+  <div class='m1'>
+    <label for='price'>Price Per Avo</label>
+    <input type='number' class='m-1 p-1' type='text' name='price' id='' />
+  </div>
+  <div class='m1'>
+    <form action='/avo:shop' method='GET'>
+      <label>Filter shops:</label>
+      <select name='shop' class='shop'>
+        <option name='shopAll' value='all'>Select shop</option>
+        <option name='shop1' value='1'>Fruit & Veg City</option>
+        <option name='shop2' value='2'>Tsjekkers</option>
+        <option name='shop3' value='3'>Shopryte</option>
+        <option name='shop4' value='4'>Pick n Play</option>
+        <option name='shop5' value='5'>Fruit lovers</option>
+
+      </select>
+      <button type='submit' class='show-shop'>Search Shop</button>
+    </form>
+  </div>
+
+</form>
