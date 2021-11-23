@@ -11,8 +11,7 @@ if (process.env.DATABASE_URL && !local) {
   useSSL = true;
 }
 
-const connectionString =
-  process.env.DATABASE_URL || 'postgresql://localhost:5432/avo_shopper';
+const connectionString = process.env.DATABASE_URL;
 
 const pool = new Pool({
   connectionString,
