@@ -4,6 +4,7 @@ module.exports = function (pool) {
       `insert into shop (name) values ($1) returning id`,
       [shopName]
     );
+    console.log(result);
     if (result.rowCount === 1) {
       return result.rows[0].id;
     }
@@ -12,6 +13,7 @@ module.exports = function (pool) {
 
   async function listShops() {
     const result = await pool.query(`select * from shop`);
+    // console.log(result.rows);
     return result.rows;
   }
 

@@ -4,11 +4,22 @@ let AvoShopper = require('../avo-shopper');
 const Pool = pg.Pool;
 require('dotenv').config();
 
+//should we use a SSL connection
+let useSSL = false;
+let local = process.env.LOCAL || false;
+if (process.env.DATABASE_URL && !local) {
+  useSSL = true;
+  console.log('im herreeeeeee');
+}
+
 const connectionString =
   process.env.DATABASE_URL || 'postgresql://localhost:5432/avo_shopper';
 
 const pool = new Pool({
   connectionString,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
 
 describe('The avo shopper', function () {
@@ -21,7 +32,8 @@ describe('The avo shopper', function () {
     const avoShopper = AvoShopper(pool);
 
     await avoShopper.createShop('Veggie Tales');
-    const shops = await await avoShopper.listShops();
+    const shops = await avoShopper.listShops();
+    //console.log(shops[0].name);
 
     assert.equal('Veggie Tales', shops[0].name);
   });
