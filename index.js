@@ -7,19 +7,20 @@ let AvoShopper = require('./avo-shopper');
 const pg = require('pg');
 const Pool = pg.Pool;
 
-// let useSSL = false;
-// let local = process.env.LOCAL || false;
-// if (process.env.DATABASE_URL && !local) {
-//   useSSL = true;
-// }
+let useSSL = false;
+let local = process.env.LOCAL || false;
+if (process.env.DATABASE_URL && !local) {
+  useSSL = true;
+}
 
-const connectionString = 'postgresql://localhost:5432/avo_shopper';
+const connectionString =
+  process.env.DATABASE_URL || 'postgresql://localhost:5432/avo_shopper';
 
 const pool = new Pool({
   connectionString,
-  //   ssl: {
-  //     rejectUnauthorized: false,
-  //   },
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
 
 const avoShopper = AvoShopper(pool);
