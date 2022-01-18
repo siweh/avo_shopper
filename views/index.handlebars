@@ -1,15 +1,35 @@
-<h2>Best deals</h2>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <link rel='stylesheet' href='/style.css' />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class='containers'>
+      <h1>Best Avo deals</h1>
+      <h2 style='text-align:center'>Here are top 5 deals:</h2>
+      <br />
+      <center style='padding: 2px; margin: 2px'>
+        {{#each deals}}
+          <img src='/avacado.png' alt='' />
+          <h4 style='display:inline-block'>{{shop_name}}
+            {{qty}}
+            for R{{price}}
+          </h4>
+        {{/each}}
+      </center>
+      <br />
+      <br />
+      <a href='/avo/add'><button>Add deal</button></a>
+      <br /><br />
+      <a href='/avo/list'><button>List shops</button></a>
+      <br /><br />
+      <a href='/avo/deals'><button>Show deals</button></a>
+      <br /><br />
+      <a href='/avo/newshop'><button>Add new shop</button></a>
 
-<div>
-  <a href='/avo/add'>Add avo</a>
-</div>
-
-<div>
-  <a href='/avo/list'>List shops</a>
-</div>
-
-<div>
-  <a href='/avo/deals'>Deals of a shop</a>
-</div>
-
-<h2>avos</h2>
+    </div>
+  </body>
+</html>

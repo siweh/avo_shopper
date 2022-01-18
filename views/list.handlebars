@@ -3,23 +3,28 @@
     <meta charset='UTF-8' />
     <meta http-equiv='X-UA-Compatible' content='IE=edge' />
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <link rel='stylesheet' href='/style.css' />
     <title>List shops</title>
   </head>
   <body>
-    <form action='/avo/list'>
+    <div class='containers'>
+      <a href='/'><button>Back</button></a>
       <h2>List of all the shops</h2>
-
+      <div class='success'>
+        {{messages.success}}
+      </div>
+      <br />
       <table>
         <tr>
-          <th>Name Of shops</th>
+          <th><h3>Shop Name</h3></th>
         </tr>
         {{#each listOfShops}}
           <tr>
-            <td>{{name}}</td>
+            <td><h4>{{name}}</h4></td>
           </tr>
         {{/each}}
       </table>
-    </form>
 
+    </div>
   </body>
 </html>
