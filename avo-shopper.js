@@ -10,7 +10,7 @@ module.exports = function (pool) {
       }
       return null;
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   }
 
